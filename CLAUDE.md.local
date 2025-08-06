@@ -1,0 +1,33 @@
+# CLAUDE.md
+
+Rails 8.0.2 bias detection API for browser extension.
+
+## Commands
+- `rails server` - Start server
+- `rails test` - Run tests  
+- `bin/rubocop` - Lint code
+
+## API Usage
+
+```bash
+curl -X POST http://localhost:3000/api/evaluate_bias \
+  -H "Content-Type: application/json" \
+  -d '{"content": "Article text to analyze"}'
+```
+
+Response format:
+```json
+{
+  "analysis": "{JSON string with structured bias analysis}",
+  "original_content": "input text",
+  "source_url": null,
+  "timestamp": "2025-06-13T19:26:09.464Z",
+  "status": "success"
+}
+```
+
+## Structure
+- `app/controllers/api_controller.rb` - Single endpoint: POST /api/evaluate_bias
+- `app/services/groq_service.rb` - LLM analysis via Groq API
+- Uses httparty, rack-cors, dotenv-rails
+- Needs GROQ_API_KEY env var
