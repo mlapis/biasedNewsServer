@@ -11,12 +11,12 @@ class ApiController < ApplicationController
     # Check API call rate limit (50 per day per IP)
     if api_rate_limit_exceeded?
       reset_time = Date.current.end_of_day.to_i
-      
+
       response.headers["X-RateLimit-Limit"] = "1"
       response.headers["X-RateLimit-Remaining"] = "0"
       response.headers["X-RateLimit-Reset"] = reset_time.to_s
       response.headers["Retry-After"] = time_until_reset.to_s
-      
+
       return render json: {
         error: "API rate limit exceeded",
         message: "You have exceeded the daily limit for API calls. Cached results are still available.",

@@ -100,8 +100,8 @@ class GroqService
   end
 
   def self.analyze_bias(content)
-    truncated_content = content.split.first(500).join(' ')
-    
+    truncated_content = content.split.first(500).join(" ")
+
     response = post("/openai/v1/chat/completions",
       headers: {
         "Content-Type" => "application/json",

@@ -15,6 +15,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  get '/.well-known/acme-challenge/*token' => proc { |env| [200, {}, ['']] }
-
+  get "/.well-known/acme-challenge/*token" => proc { |env| [ 200, {}, [ "" ] ] }
 end

@@ -11,7 +11,7 @@ class Rack::Attack
 
   # Custom response for rate limited requests
   self.throttled_responder = lambda do |request|
-    match_data = request.env['rack.attack.match_data']
+    match_data = request.env["rack.attack.match_data"]
     now = match_data[:epoch_time]
 
     headers = {
