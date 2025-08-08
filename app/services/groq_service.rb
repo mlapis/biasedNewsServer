@@ -127,7 +127,9 @@ class GroqService
     if response.success?
       response.parsed_response.dig("choices", 0, "message", "content")
     else
-      raise "Groq API error: #{response.code} #{response.message}"
+      Rails.logger.error "Groq API error: #{response.code} #{response.message}"
+      Rails.logger.error "Groq API response body: #{response.body}"
+      raise "Groq API error: #{response.code} #{response.message} - #{response.body}"
     end
   end
 
